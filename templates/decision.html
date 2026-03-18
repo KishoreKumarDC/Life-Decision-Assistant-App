@@ -3,297 +3,232 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Decision Oracle | Aether Sovereign</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>Decision Oracle</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 <style>
-:root {
-    --gold: #d4af37;
-    --gold-bright: #fcf6ba;
-    --gold-glow: rgba(212, 175, 55, 0.3);
-    --bg-dark: #050505;
-    --glass: rgba(15, 15, 15, 0.95);
-    --border: rgba(212, 175, 55, 0.15);
-    --point-bg: rgba(255,255,255,0.05);
-    --insight-color: #dcdcdc;
-    --emoji-color: #fcf6ba;
-}
-* { margin:0; padding:0; box-sizing: border-box; }
 
-body {
-    background: var(--bg-dark);
-    background-image: 
-        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08), transparent 50%),
-        linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-    background-size: 100% 100%, 40px 40px, 40px 40px;
-    color: #fff;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    min-height: 100vh;
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
+:root{
+--gold:#d4af37;
+--gold-bright:#fcf6ba;
+--bg:#050505;
+--glass:rgba(15,15,15,.95);
+--border:rgba(212,175,55,.15);
+--point:rgba(255,255,255,.05);
 }
 
-.container {
-    width: 100%;
-    max-width: 800px;
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    border-radius: 40px;
-    padding: 60px;
-    box-shadow: 0 0 80px rgba(0,0,0,1);
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:var(--bg);
+font-family:'Plus Jakarta Sans';
+min-height:100vh;
+padding:20px;
+display:flex;
+justify-content:center;
 }
 
-h1 {
-    font-family: 'Cinzel', serif;
-    font-size: 2.2rem;
-    text-align: center;
-    background: linear-gradient(to bottom, #fff 20%, var(--gold-bright));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 8px;
-    margin-bottom: 40px;
-    text-transform: uppercase;
+.container{
+width:100%;
+max-width:820px;
+background:var(--glass);
+border:1px solid var(--border);
+border-radius:30px;
+padding:40px;
 }
 
-.input-group { margin-bottom: 30px; }
+/* TITLE */
 
-label {
-    font-weight: 800;
-    font-size: 10px;
-    color: var(--gold);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: block;
+h1{
+font-family:Cinzel;
+letter-spacing:6px;
+text-align:center;
+margin-bottom:30px;
+background:linear-gradient(to bottom,#fff,var(--gold-bright));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+font-size:clamp(22px,4vw,32px);
 }
 
-textarea {
-    width: 100%;
-    background: rgba(0,0,0,0.5);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 20px;
-    color: #fff;
-    font-size: 16px;
-    line-height: 1.6;
-    resize: none;
-    outline: none;
-    transition: 0.3s;
+/* INPUT */
+
+label{
+font-size:11px;
+letter-spacing:2px;
+color:var(--gold);
+margin-bottom:8px;
+display:block;
 }
 
-textarea:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 20px var(--gold-glow);
+textarea{
+width:100%;
+background:#000;
+border:1px solid var(--border);
+border-radius:16px;
+padding:16px;
+color:white;
+font-size:14px;
+min-height:140px;
+resize:none;
+outline:none;
 }
 
-.btn-resolve {
-    width: 100%;
-    padding: 20px;
-    border: none;
-    border-radius: 18px;
-    background: linear-gradient(135deg, var(--gold-bright), var(--gold));
-    color: #000;
-    font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    margin-bottom: 40px;
+/* BUTTON */
+
+.btn{
+width:100%;
+padding:16px;
+margin-top:20px;
+border:none;
+border-radius:14px;
+background:linear-gradient(145deg,#FFD700,#D4AF37);
+font-weight:800;
+letter-spacing:3px;
+cursor:pointer;
 }
 
-.btn-resolve:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px var(--gold-glow);
+/* LOADER */
+
+#loader{
+display:none;
+text-align:center;
+margin:20px 0;
+color:var(--gold);
 }
 
-#loader {
-    display: none;
-    text-align: center;
-    padding: 20px;
-    color: var(--gold);
-    font-weight: 600;
-    letter-spacing: 2px;
+/* RESULTS */
+
+.results{
+display:none;
+margin-top:25px;
 }
 
-.results-window {
-    border-top: 1px solid var(--border);
-    padding-top: 40px;
-    display: none;
+.point{
+background:var(--point);
+padding:12px;
+border-radius:12px;
+margin-bottom:10px;
+font-size:14px;
 }
 
-.analysis-section {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
+#verdict{
+margin-top:20px;
+background:var(--point);
+padding:18px;
+border-radius:16px;
+font-size:16px;
+font-weight:700;
 }
 
-.analysis-point {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: var(--point-bg);
-    padding: 15px 20px;
-    border-radius: 15px;
-    line-height: 1.5;
-    color: var(--insight-color);
-    font-size: 15px;
-    min-height: 35px;
+/* MOBILE */
+
+@media(max-width:600px){
+
+.container{
+padding:20px;
+border-radius:20px;
 }
 
-.analysis-point i {
-    color: var(--emoji-color);
-    flex-shrink: 0;
+textarea{
+font-size:13px;
+min-height:120px;
 }
 
-.decision-header {
-    font-family: 'Cinzel';
-    color: var(--gold-bright);
-    font-size: 14px;
-    letter-spacing: 4px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
 }
 
-#verdictText {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.6;
-    min-height: 60px;
-    background: var(--point-bg);
-    padding: 20px;
-    border-radius: 20px;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
-}
-
-.typing {
-    border-right: 2px solid var(--gold);
-    animation: blink 0.7s infinite;
-}
-
-@keyframes blink { 50% { border-color: transparent; } }
-
-@media (max-width: 600px) {
-    .container { padding: 30px; }
-    h1 { font-size: 1.5rem; letter-spacing: 4px; }
-}
 </style>
 </head>
+
 <body>
 
 <div class="container">
-    <h1>Decision Oracle</h1>
 
-    <div class="input-group">
-        <label><i class="fas fa-scroll"></i> SITUATION CONTEXT</label>
-        <textarea id="situation" rows="5" placeholder="Describe your situation here..."></textarea>
-    </div>
+<h1>Decision Oracle</h1>
 
-    <button class="btn-resolve" onclick="runDecision()">Initiate Analysis</button>
+<label>Situation</label>
+<textarea id="situation" placeholder="Describe your situation"></textarea>
 
-    <div id="loader">
-        <i class="fas fa-circle-notch fa-spin"></i> &nbsp; THINKING...
-    </div>
+<button class="btn" onclick="runDecision()">Analyze</button>
 
-    <div id="resultsWindow" class="results-window">
-        <label><i class="fas fa-brain"></i> INSIGHTS</label>
-        <div class="analysis-section" id="analysis"></div>
+<div id="loader">Thinking...</div>
 
-        <div class="decision-header">
-            <i class="fas fa-crown"></i> FINAL DECISION
-        </div>
-        <div id="verdictText"></div>
-    </div>
+<div id="results" class="results">
+<div id="analysis"></div>
+<div id="verdict"></div>
+</div>
+
 </div>
 
 <script>
-async function runDecision() {
-    const situation = document.getElementById("situation").value.trim();
-    const loader = document.getElementById("loader");
-    const resultsWindow = document.getElementById("resultsWindow");
-    const analysis = document.getElementById("analysis");
-    const verdictText = document.getElementById("verdictText");
-    const btn = document.querySelector(".btn-resolve");
 
-    if (!situation) { alert("Please enter your situation."); return; }
+async function runDecision(){
 
-    loader.style.display = "block";
-    resultsWindow.style.display = "none";
-    analysis.innerHTML = "";
-    verdictText.innerHTML = "";
-    btn.disabled = true;
-    btn.style.opacity = "0.5";
+let situation=document.getElementById("situation").value.trim()
+if(!situation) return
 
-    try {
-        const response = await fetch("/decision_api", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ situation })
-        });
-        const data = await response.json();
-        loader.style.display = "none";
-        resultsWindow.style.display = "block";
+let loader=document.getElementById("loader")
+let results=document.getElementById("results")
+let analysis=document.getElementById("analysis")
+let verdict=document.getElementById("verdict")
 
-        let text = data.reply;
-        let lines = text.split("\n").filter(l => l.trim() !== "");
-        let reasoning = [];
-        let finalDecision = "";
+loader.style.display="block"
+results.style.display="none"
+analysis.innerHTML=""
+verdict.innerHTML=""
 
-        lines.forEach(line => {
-            if (/decision[:]?/i.test(line)) {
-                finalDecision = line.replace(/decision[:]?/i, "").trim();
-            } else if (line.trim() !== "") {
-                reasoning.push(line.trim());
-            }
-        });
+try{
 
-        const emojis = ["💡", "⚡", "👍", "✅", "🔹"];
-        // Insights typing
-        for (let i = 0; i < reasoning.length; i++) {
-            const div = document.createElement("div");
-            div.classList.add("analysis-point");
-            div.innerHTML = `<i>${emojis[i % emojis.length]}</i> <span></span>`;
-            analysis.appendChild(div);
-            await typeLine(reasoning[i], div.querySelector("span"));
-        }
+let res=await fetch("/decision_api",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({situation})
+})
 
-        // Final decision typing with bold
-        verdictText.innerHTML = "";
-        await typeLine(finalDecision, verdictText, true);
+let data=await res.json()
+loader.style.display="none"
+results.style.display="block"
 
-    } catch (err) {
-        console.error(err);
-        loader.style.display = "none";
-        resultsWindow.style.display = "block";
-        analysis.innerHTML = "<div style='color:#ff4d4d'>❌ Unable to reach Oracle. Try again.</div>";
-    } finally {
-        btn.disabled = false;
-        btn.style.opacity = "1";
-    }
+let text=data.reply
+let lines=text.split("\n")
+
+let final=""
+
+lines.forEach(l=>{
+if(l.toLowerCase().includes("decision")){
+final=l.replace(/decision[:]?/i,"")
+}else{
+let div=document.createElement("div")
+div.className="point"
+typeText(l,div)
+analysis.appendChild(div)
+}
+})
+
+typeText(final,verdict)
+
+}catch{
+
+loader.style.display="none"
+results.style.display="block"
+analysis.innerHTML="AI Error"
+
 }
 
-async function typeLine(text, el, slow=false) {
-    return new Promise(resolve => {
-        let i = 0;
-        const interval = setInterval(() => {
-            if (i < text.length) {
-                el.innerHTML += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(interval);
-                resolve();
-            }
-        }, slow ? 35 : 15);
-    });
 }
+
+function typeText(text,el){
+let i=0
+function t(){
+if(i<text.length){
+el.innerHTML+=text.charAt(i)
+i++
+setTimeout(t,12)
+}
+}
+t()
+}
+
 </script>
 
 </body>

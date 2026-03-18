@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comparison Oracle | Aether Sovereign</title>
+<title>Comparison Oracle</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
@@ -18,148 +17,165 @@
 --border:rgba(212,175,55,0.15);
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
 background:var(--bg-dark);
 color:#fff;
 font-family:'Inter',sans-serif;
 min-height:100vh;
-padding:60px 20px;
+padding:20px;
+display:flex;
+justify-content:center;
 }
+
+/* CONTAINER */
 
 .container{
+width:100%;
 max-width:900px;
-margin:auto;
 background:var(--glass);
 border:1px solid var(--border);
-border-radius:40px;
-padding:60px;
+border-radius:30px;
+padding:40px;
 }
 
+/* TITLE */
+
 h2{
-font-family:'Cinzel',serif;
-font-size:2.5rem;
+font-family:'Cinzel';
 text-align:center;
-letter-spacing:10px;
+letter-spacing:6px;
 color:var(--gold-bright);
-margin-bottom:10px;
-text-transform:uppercase;
+margin-bottom:8px;
+font-size:clamp(22px,4vw,36px);
 }
 
 .tagline{
 text-align:center;
 font-size:10px;
-letter-spacing:6px;
+letter-spacing:4px;
 color:var(--gold);
-margin-bottom:40px;
+margin-bottom:30px;
 }
+
+/* GRID */
 
 .input-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:25px;
-margin-bottom:25px;
+gap:20px;
+margin-bottom:20px;
 }
 
 label{
-font-size:10px;
+font-size:11px;
 color:var(--gold);
 letter-spacing:2px;
-margin-bottom:8px;
+margin-bottom:6px;
 display:block;
 }
 
 input,textarea{
 width:100%;
-padding:15px;
+padding:14px;
 border-radius:12px;
 border:1px solid rgba(255,255,255,0.1);
 background:#000;
 color:#fff;
+font-size:14px;
 }
 
 textarea{
-margin-top:10px;
+margin-top:8px;
+min-height:90px;
+resize:none;
 }
 
+/* BUTTON */
+
 .btn-oracle{
-margin-top:25px;
+margin-top:20px;
 width:100%;
-padding:18px;
+padding:16px;
 border:none;
-border-radius:15px;
+border-radius:14px;
 background:linear-gradient(135deg,var(--gold-bright),var(--gold));
-font-weight:bold;
+font-weight:800;
 letter-spacing:3px;
 cursor:pointer;
 }
-#verdictText{
-white-space: pre-line;
-text-align: left;
-line-height: 1.9;
-font-size: 16px;
-font-family: 'Inter', sans-serif;
-padding: 25px;
-background: rgba(255,255,255,0.03);
-border-radius: 15px;
-border: 1px solid rgba(212,175,55,0.2);
-}
-#verdictText::after{
-content:"|";
-animation:blink 1s infinite;
-margin-left:3px;
-}
 
-@keyframes blink{
-0%{opacity:1}
-50%{opacity:0}
-100%{opacity:1}
-}
+/* LOADER */
 
 .loader{
 display:none;
 text-align:center;
-margin-top:40px;
+margin-top:30px;
 }
 
 .loader i{
-font-size:35px;
+font-size:32px;
 color:var(--gold);
-animation:spin 2s linear infinite;
+animation:spin 1.5s linear infinite;
 }
 
 @keyframes spin{
-100%{transform:rotate(360deg);}
+100%{transform:rotate(360deg)}
 }
+
+/* RESULT */
 
 #resultZone{
 display:none;
-margin-top:50px;
+margin-top:35px;
 }
 
 .verdict-box{
 border:1px solid var(--gold);
-padding:40px;
-border-radius:30px;
-text-align:center;
+padding:25px;
+border-radius:20px;
+text-align:left;
+max-height:50vh;
+overflow-y:auto;
 }
 
 .final-label{
 color:var(--gold);
-font-size:10px;
-letter-spacing:5px;
+font-size:11px;
+letter-spacing:4px;
 display:block;
-margin-bottom:20px;
+margin-bottom:15px;
+text-align:center;
 }
 
 #verdictText{
-line-height:1.8;
-font-size:16px;
+white-space:pre-line;
+line-height:1.9;
+font-size:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+.container{
+padding:22px;
+border-radius:20px;
+}
+
+.input-grid{
+grid-template-columns:1fr;
+}
+
+textarea{
+min-height:110px;
+}
+
+.verdict-box{
+max-height:55vh;
+}
+
 }
 
 </style>
@@ -187,7 +203,7 @@ font-size:16px;
 </div>
 
 <label>GUIDING_GOAL</label>
-<textarea id="myWish" rows="2" placeholder="What is your goal?"></textarea>
+<textarea id="myWish" placeholder="What is your goal?"></textarea>
 
 <button class="btn-oracle" onclick="runOracle()">Initiate Synthesis</button>
 
@@ -197,31 +213,25 @@ font-size:16px;
 </div>
 
 <div id="resultZone">
-
 <div class="verdict-box">
-
 <span class="final-label">AI ANALYSIS</span>
-
 <div id="verdictText"></div>
-
+</div>
 </div>
 
 </div>
-
-</div>
-
 
 <script>
 
 async function runOracle(){
 
-const btn = document.querySelector('.btn-oracle')
-const loader = document.getElementById('loader')
-const result = document.getElementById('resultZone')
+const btn=document.querySelector('.btn-oracle')
+const loader=document.getElementById('loader')
+const result=document.getElementById('resultZone')
 
-const o1 = document.getElementById('option1').value.trim()
-const o2 = document.getElementById('option2').value.trim()
-const goal = document.getElementById('myWish').value.trim()
+const o1=document.getElementById('option1').value.trim()
+const o2=document.getElementById('option2').value.trim()
+const goal=document.getElementById('myWish').value.trim()
 
 loader.style.display="block"
 result.style.display="none"
@@ -229,19 +239,13 @@ btn.disabled=true
 
 try{
 
-const res = await fetch("/compare_api",{
+const res=await fetch("/compare_api",{
 method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-option1:o1,
-option2:o2,
-goal:goal
-})
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({option1:o1,option2:o2,goal:goal})
 })
 
-const data = await res.json()
+const data=await res.json()
 
 loader.style.display="none"
 result.style.display="block"
@@ -249,7 +253,7 @@ btn.disabled=false
 
 typeAIResult(data.reply)
 
-}catch(err){
+}catch{
 
 loader.style.display="none"
 btn.disabled=false
@@ -259,37 +263,30 @@ document.getElementById("verdictText").innerHTML="⚠️ AI engine failed."
 
 }
 
-
-
 function typeAIResult(text){
 
-const box = document.getElementById("verdictText")
+const box=document.getElementById("verdictText")
 
-// format text first
-text = text
+text=text
 .replace(/🅰️/g,"\n🅰️ Option A\n")
 .replace(/🅱️/g,"\n🅱️ Option B\n")
 .replace(/🎯/g,"\n\n🎯 Final Suggestion\n")
 
-box.innerHTML = ""
+box.innerHTML=""
 
-let i = 0
-let speed = 18
-
+let i=0
 function typing(){
-
-if(i < text.length){
-
-box.innerHTML += text.charAt(i)
+if(i<text.length){
+box.innerHTML+=text.charAt(i)
 i++
-setTimeout(typing, speed)
-
+setTimeout(typing,16)
 }
-
 }
-
 typing()
 
 }
 
 </script>
+
+</body>
+</html>
