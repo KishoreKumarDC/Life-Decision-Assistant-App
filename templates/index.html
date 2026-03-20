@@ -65,15 +65,37 @@ box-shadow:0 0 30px var(--gold-glow),inset 0 0 15px var(--gold-glow)
 }
 
 .boot-title{
-margin-top:40px;
-font-family:'Cinzel';
-font-size:24px;
-font-weight:900;
-letter-spacing:12px;
+margin-top:8vh;
+padding:0 20px;
+text-align:center;
+
+font-family:'Cinzel',serif;
+font-size:6vw;              /* Responsive mobile font */
+font-weight:400;
+letter-spacing:2vw;
 text-transform:uppercase;
-background:linear-gradient(to right,#8a6628,var(--gold-bright),#8a6628);
+line-height:1.4;
+
+background:linear-gradient(
+90deg,
+#6b4b1a,
+#d4af37,
+#fff2b0,
+#d4af37,
+#6b4b1a
+);
+
+background-size:200% auto;
+
 -webkit-background-clip:text;
--webkit-text-fill-color:transparent
+-webkit-text-fill-color:transparent;
+
+animation:goldFlow 6s linear infinite;
+}
+
+@keyframes goldFlow{
+0%{background-position:0% center;}
+100%{background-position:200% center;}
 }
 
 @keyframes spin{
@@ -363,7 +385,7 @@ text-shadow:0 0 10px rgba(255,215,0,0.6);
 
 .history-toggle{
 position:fixed;
-top:92%;
+top:73%;
 left:42%;
 right:25px;
 bottom:25px;

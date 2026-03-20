@@ -115,72 +115,103 @@ letter-spacing:3px;
 }
 
 /* RESULTS */
-
 #careerResults{
 display:none;
 margin-top:30px;
+color:#ffffff;
 }
 
+/* GRID LAYOUT */
 .matrix-grid{
 display:grid;
 grid-template-columns:1fr 1.4fr;
-gap:20px;
+gap:25px;
+align-items:start;
 }
 
+/* LEFT STAT CARD */
 .stat-card{
 background:#0b0b0b;
-padding:20px;
-border-radius:16px;
-border:1px solid var(--border);
+padding:22px;
+border-radius:18px;
+border:1px solid rgba(212,175,55,0.25);
+box-shadow:0 0 20px rgba(212,175,55,0.08);
 }
 
+/* EACH BAR BLOCK */
 .stat-bar{
-margin-bottom:18px;
+margin-bottom:22px;
 }
 
 .stat-meta{
 display:flex;
 justify-content:space-between;
-font-size:10px;
-color:var(--gold);
-margin-bottom:6px;
+font-size:12px;
+font-weight:600;
+letter-spacing:1px;
+color:#FFD700;
+margin-bottom:8px;
 }
 
+/* BAR */
 .bar-bg{
-height:4px;
-background:#111;
+height:6px;
+background:#141414;
+border-radius:20px;
+overflow:hidden;
 }
 
 .bar-fill{
 height:100%;
-background:var(--gold);
+background:linear-gradient(90deg,#FFD700,#D4AF37);
 width:0%;
-transition:1.5s;
+border-radius:20px;
+transition:1.4s ease;
 }
 
+/* TERMINAL OUTPUT */
 .roadmap-terminal{
-background:#000;
-border:1px solid var(--border);
-border-radius:16px;
-padding:20px;
-font-size:13px;
-line-height:1.7;
-min-height:200px;
+background:#050505;
+border:1px solid rgba(212,175,55,0.2);
+border-radius:18px;
+padding:22px;
+font-size:14px;
+line-height:1.8;
+min-height:240px;
 overflow:auto;
+white-space:pre-line;   /* ⭐ VERY IMPORTANT → stops essay look */
+color:#eaeaea;
 }
 
+/* FINAL RESULT CARD */
 .final-verdict{
 text-align:center;
-margin-top:25px;
-padding:25px;
-border-radius:20px;
-border:1px solid var(--gold);
+margin-top:30px;
+padding:28px;
+border-radius:22px;
+border:1px solid #FFD700;
+background:linear-gradient(145deg,#050505,#0d0d0d);
+box-shadow:0 0 30px rgba(212,175,55,0.15);
 }
 
+/* FINAL PATH TEXT */
 #finalPath{
 font-family:'Cinzel';
-font-size:20px;
+font-size:24px;
+letter-spacing:3px;
+background:linear-gradient(to right,#FFD700,#fff,#FFD700);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:8px;
 }
+
+/* SMALL RESULT MESSAGE */
+.final-verdict p{
+font-size:14px;
+color:#ccc;
+margin-top:6px;
+}
+
 
 /* MOBILE */
 
