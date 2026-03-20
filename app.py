@@ -78,14 +78,8 @@ flow = Flow.from_client_config(
         "openid"
     ],
     #redirect_uri="https://life-decision-assistant-4wm1.onrender.com/google/callback"
-<<<<<<< HEAD
     #redirect_uri="http://127.0.0.1:5000/google/callback"
     redirect_uri="https://life-decision-assistant-app.onrender.com/google/callback"
-=======
-    redirect_uri="http://127.0.0.1:5000/google/callback"
-    #redirect_uri="https://life-decision-assistant-app.onrender.com/google/callback"
->>>>>>> 3e98986 (Updated  result UI design)
-
 )
 
 # -------------------------------
