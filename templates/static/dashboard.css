@@ -187,3 +187,22 @@ color:red;
 }
 
 }
+button,
+a,
+div,
+.card,
+.tool-card,
+.history-toggle{
+
+-webkit-tap-highlight-color: transparent;
+outline: none;
+}
+
+button:focus,
+a:focus{
+outline:none;
+}
+
+button:active{
+transform:scale(0.97);
+}
